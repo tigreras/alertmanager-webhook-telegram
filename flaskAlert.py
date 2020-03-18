@@ -43,7 +43,7 @@ def postAlertmanager():
             bot.sendMessage(chat_id=chatID, text=message)
             return "Alert OK", 200
     except:
-        bot.sendMessage(chat_id=chatID, text="Error!")
+        bot.sendMessage(chat_id=chatID, text="Error! with content: " + content )
         return "Alert nOK", 200
 
 
