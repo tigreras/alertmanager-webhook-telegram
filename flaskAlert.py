@@ -1,19 +1,20 @@
 import telegram
 import logging
 import json
+import os
 from flask import Flask
 from flask import request
 from flask_basicauth import BasicAuth
 
 app = Flask(__name__)
 app.secret_key = 'aYT>.L$kk2h>!'
-app.config['BASIC_AUTH_USERNAME'] = 'XXXUSERNAME'
-app.config['BASIC_AUTH_PASSWORD'] = 'XXXPASSWORD'
+app.config['BASIC_AUTH_USERNAME'] = os.environ['BASIC_AUTH_USERNAME']
+app.config['BASIC_AUTH_PASSWORD'] = os.environ['BASIC_AUTH_PASSWORD']
 
 basic_auth = BasicAuth(app)
 app.config['BASIC_AUTH_FORCE'] = True
-bot = telegram.Bot(token="botToken")
-chatID = "xchatIDx"
+bot = telegram.Bot(token= os.environ['TELEGRAM_BOTTOKEN']  )
+chatID = os.environ['TELEGRAM_CHATID']
 
 @app.route('/alert', methods = ['POST'])
 def postAlertmanager():
